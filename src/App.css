@@ -38,3 +38,13 @@ body{
     transform: rotate(360deg);
   }
 }
+.dummy{
+  height: 100px;
+}
+.box{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+  max-height: max-content;
+  justify-content: center;
+}

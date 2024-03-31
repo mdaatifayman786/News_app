@@ -1,7 +1,8 @@
 import './App.css';
 import NavBar from "./components/NavBar"
-
+import NewsBox from "./components/NewsBox"
 import React from 'react'
+import DummyDIv from './components/DummyDIv';
 
 export default function App() {
   const [mode, setMode] = React.useState('light');
@@ -21,6 +22,16 @@ export default function App() {
   return (
     <div>
       <NavBar mode={mode} toggleColorMode={toggleColorMode}/>
+      <DummyDIv/>
+      <div className="box">
+        <NewsBox mode={mode}/>
+        <NewsBox mode={mode}/>
+        <NewsBox mode={mode}/>
+        <NewsBox mode={mode}/>
+        <NewsBox mode={mode}/>
+        <NewsBox mode={mode}/>
+      </div>
     </div>
+
   )
 }
