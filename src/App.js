@@ -7,14 +7,14 @@ import DummyDIv from './components/DummyDIv';
 export default function App() {
   const [mode, setMode] = React.useState('light');
   const toggleColorMode = () =>{
-    if(mode=="light"){
+    if(mode==="light"){
       setMode("dark")
       var main = document.body
       main.style.backgroundColor = "gray"
     }else{
       setMode("light")
-      var main = document.body
-      main.style.backgroundColor = "#fff"
+      var main1 = document.body
+      main1.style.backgroundColor = "#fff"
     }
 
 
@@ -24,11 +24,6 @@ export default function App() {
       <NavBar mode={mode} toggleColorMode={toggleColorMode}/>
       <DummyDIv/>
       <div className="box">
-        <NewsBox mode={mode}/>
-        <NewsBox mode={mode}/>
-        <NewsBox mode={mode}/>
-        <NewsBox mode={mode}/>
-        <NewsBox mode={mode}/>
         <NewsBox mode={mode}/>
       </div>
     </div>

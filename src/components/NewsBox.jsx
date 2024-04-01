@@ -7,26 +7,53 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function MediaCard({mode}) {
+  const [data,setData] = React.useState(null)
+  React.useEffect(() => {
+    // Function to fetch data
+    const fetchData = async () => {
+      try {
+        // Make API call to fetch data
+        const response = await fetch('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=b25243b1c049414d9a4258bc71095bd4')
+        // Convert response to JSON
+        const jsonData = await response.json();
+        // Update state with fetched data
+        setData(jsonData);
+      } catch (error) {
+        // Handle errors
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Call the fetch data function
+    fetchData();
+  }, []);
+  console.log(data)
   return (
-    <Card sx={{ maxWidth: 345,marginRight:"25px",marginBottom:"50px",marginLeft:"25px",backgroundColor:mode==="light"?"ivory":"darkgray" }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk="
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div className='mainBox'>
+      {/* Conditionally render the Card component if data is not null */}
+      {data!==null && data["articles"].map((element)=>{
+        return <Card key={element["url"]} sx={{ maxWidth: 345, marginRight: "25px", marginBottom: "50px", marginLeft: "25px", backgroundColor: mode === "light" ? "ivory" : "darkgray" }}>
+          <CardMedia
+            sx={{ height: 140 }}
+            image={element["urlToImage"]}
+            title={data["content"]}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {element["title"]}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {element["description"]}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Share</Button>
+            <Button size="small">Learn More</Button>
+          </CardActions>
+        </Card>}
+      )}
+      {/* Render a loading message if data is null */}
+      {data === null && <p>Loading...</p>}
+    </div>
   );
 }

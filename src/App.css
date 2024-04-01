@@ -41,7 +41,7 @@ body{
 .dummy{
   height: 100px;
 }
-.box{
+.mainBox{
   display: flex;
   flex-wrap: wrap;
   margin: 50px;
