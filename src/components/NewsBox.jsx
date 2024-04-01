@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import loader from "../img/loader.gif"
 
 export default function MediaCard({mode}) {
   const [data,setData] = React.useState(null)
@@ -48,12 +49,12 @@ export default function MediaCard({mode}) {
           </CardContent>
           <CardActions>
             <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+            <Button href={element["url"]} size="small">Learn More</Button>
           </CardActions>
         </Card>}
       )}
       {/* Render a loading message if data is null */}
-      {data === null && <p>Loading...</p>}
+      {data === null && <img src={loader} alt='Loading.....'/>}
     </div>
   );
 }
