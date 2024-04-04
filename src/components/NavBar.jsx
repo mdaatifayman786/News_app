@@ -20,7 +20,7 @@ const logoStyle = {
   cursor: 'pointer',
 };
 
-function AppAppBar({ mode, toggleColorMode }) {
+function AppAppBar({ mode, toggleColorMode,newsCatgories }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -95,43 +95,43 @@ function AppAppBar({ mode, toggleColorMode }) {
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
-                  onClick={() => scrollToSection('features')}
+                  onClick={() =>newsCatgories("science")}
                   sx={{ py: '6px', px: '12px' }}
                 >
-                  <Typography variant="body2" color={mode == "light"?"text.primary":"#fff"}>
-                    Features
+                  <Typography variant="body2" color={mode === "light"?"text.primary":"#fff"}>
+                    Science
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('testimonials')}
+                  onClick={() =>newsCatgories("business")}
                   sx={{ py: '6px', px: '12px' }}
                 >
-                  <Typography variant="body2" color={mode == "light"?"text.primary":"#fff"}>
-                    Testimonials
+                  <Typography variant="body2" color={mode === "light"?"text.primary":"#fff"}>
+                  Business
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('highlights')}
+                  onClick={() =>newsCatgories('health')}
                   sx={{ py: '6px', px: '12px' }}
                 >
-                  <Typography variant="body2" color={mode == "light"?"text.primary":"#fff"}>
-                    Highlights
+                  <Typography variant="body2" color={mode === "light"?"text.primary":"#fff"}>
+                  Health
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('pricing')}
+                  onClick={() => newsCatgories("sports")}
                   sx={{ py: '6px', px: '12px' }}
                 >
-                  <Typography variant="body2" color={mode == "light"?"text.primary":"#fff"}>
-                    Pricing
+                  <Typography variant="body2" color={mode === "light"?"text.primary":"#fff"}>
+                  sports
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('faq')}
+                  onClick={() =>newsCatgories("technology")}
                   sx={{ py: '6px', px: '12px' }}
                 >
-                  <Typography variant="body2" color={mode == "light"?"text.primary":"#fff"}>
-                    FAQ
+                  <Typography variant="body2" color={mode === "light"?"text.primary":"#fff"}>
+                    Technology
                   </Typography>
                 </MenuItem>
               </Box>

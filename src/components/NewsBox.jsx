@@ -7,28 +7,32 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import loader from "../img/loader.gif"
 
-export default function MediaCard({mode}) {
+export default function MediaCard({mode, api}) {
   const [data,setData] = React.useState(null)
+  const [apidata,setApidata] = React.useState("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=b25243b1c049414d9a4258bc71095bd4")
+  const fetchData = async () => {
+    try {
+      // Make API call to fetch data
+      const response = await fetch(apidata)
+      // Convert response to JSON
+      const jsonData = await response.json();
+      // Update state with fetched data
+      setData(jsonData);
+    } catch (error) {
+      // Handle errors
+      console.error('Error fetching data:', error);
+    }
+  };
   React.useEffect(() => {
-    // Function to fetch data
-    const fetchData = async () => {
-      try {
-        // Make API call to fetch data
-        const response = await fetch('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=b25243b1c049414d9a4258bc71095bd4')
-        // Convert response to JSON
-        const jsonData = await response.json();
-        // Update state with fetched data
-        setData(jsonData);
-      } catch (error) {
-        // Handle errors
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    // Call the fetch data function
     fetchData();
-  }, []);
+  }, [apidata]); // Only re-run effect if 'apidata' changes
+
+  React.useEffect(() => {
+    // Update 'apidata' state when the 'api' prop changes
+    setApidata(api);
+  }, [api]);
   console.log(data)
+  console.log(apidata)
   return (
     <div className='mainBox'>
       {/* Conditionally render the Card component if data is not null */}
