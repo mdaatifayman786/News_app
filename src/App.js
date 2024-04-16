@@ -5,7 +5,8 @@ import React, { useState } from 'react'
 import DummyDIv from './components/DummyDIv';
 
 export default function App() {
-  const [api,setapi] = React.useState("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=b25243b1c049414d9a4258bc71095bd4")
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const [api,setapi] = React.useState(`https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${process.env.REACT_APP_API_KEY}`)
   const [mode, setMode] = React.useState('light');
   const toggleColorMode = () =>{
     if(mode==="light"){
@@ -21,7 +22,7 @@ export default function App() {
     
   }
   const newsCatgories=(data)=>{
-    setapi(`https://newsapi.org/v2/top-headlines?country=in&category=${data}&apiKey=b25243b1c049414d9a4258bc71095bd4`)
+    setapi(`https://newsapi.org/v2/top-headlines?country=in&category=${data}&apiKey=${apiKey}`)
     console.log(data)
   }
   return (

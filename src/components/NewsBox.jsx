@@ -9,7 +9,7 @@ import loader from "../img/loader.gif"
 
 export default function MediaCard({mode, api}) {
   const [data,setData] = React.useState(null)
-  const [apidata,setApidata] = React.useState("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=b25243b1c049414d9a4258bc71095bd4")
+  const [apidata,setApidata] = React.useState(`https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${process.env.REA}`)
   const fetchData = async () => {
     try {
       // Make API call to fetch data
